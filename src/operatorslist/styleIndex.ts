@@ -6,6 +6,12 @@ export const StyledBackground = styled.section`
   height: 100vh;
   font-family: "Rubik", sans-serif;
 `;
+export const StyledListLogo = styled.img`
+  margin-right: 8px;
+  padding: 5px;
+  width: 32px;
+  filter: brightness(0.7);
+`;
 
 export const OperatorSelectionWrapper = styled.div`
   padding-top: 10px;

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
+import { OPERATORS_LIST } from "../constants";
 
 import {
   OperatorSelectionWrapper,
@@ -10,6 +11,7 @@ import {
   OperatorCardWrapper,
   OperatorSelectionTitle,
   OperatorSelectionContainer,
+  StyledListLogo,
 } from "./styleIndex";
 
 interface Operator {
@@ -17,62 +19,37 @@ interface Operator {
   name: string;
   image: string;
 }
-export default function OperatorsList() {
-  const operators: Operator[] = [
-    {
-      id: "mts",
-      name: "  МТС",
-      image: "/mts.png",
-    },
-    {
-      id: "beeline",
-      name: "Билайн",
-      image: "/beeline.png",
-    },
-    {
-      id: "megafon",
-      name: "Мегафон",
-      image: "/megafon.png",
-    },
-  ];
+export default function OperatorSelection() {
+  const router: NextRouter = useRouter();
+  const [index, setIndex] = useState(3);
+  const lenOperatorsList = Object.keys(OPERATORS_LIST).length;
 
-  const OperatorSelection = () => {
-    const router = useRouter();
-
-    const handleOperatorSelect = (operator: Operator) => {
-      // Navigate to payment form page passing the selected operator ID as a query parameter
-      router.push({
-        pathname: "/payment-form",
-        query: { operator: operator.id },
-      });
-    };
-
-    return (
-      <StyledBackground>
-        <OperatorSelectionContainer>
-          <OperatorSelectionWrapper>
-            <OperatorSelectionTitle>Выберите оператора:</OperatorSelectionTitle>
-            <OperatorCardWrapper>
-              {operators.map((operator) => (
-                <OperatorCardContainer
-                  key={operator.id}
-                  onClick={() => handleOperatorSelect(operator)}
-                >
-                  <Image
-                    src={operator.image}
-                    alt={operator.name}
-                    width={50}
-                    height={50}
-                  />
-                  {operator.name}
-                </OperatorCardContainer>
-              ))}
-            </OperatorCardWrapper>
-          </OperatorSelectionWrapper>
-        </OperatorSelectionContainer>
-      </StyledBackground>
-    );
-  };
-
-  return <OperatorSelection />;
+  return (
+    <StyledBackground>
+      <OperatorSelectionContainer>
+        <OperatorSelectionWrapper>
+          <OperatorSelectionTitle>Выберите оператора:</OperatorSelectionTitle>
+          <OperatorCardWrapper>
+            {OPERATORS_LIST.map((element) => {
+              if (index >= element.id)
+                return (
+                  <OperatorCardContainer
+                    key={element.id}
+                    onClick={() => {
+                      router.push({
+                        pathname: `/paymentform/[id]`,
+                        query: { id: element.id },
+                      });
+                    }}
+                  >
+                    <StyledListLogo src={element.logo} />
+                    {element.name}
+                  </OperatorCardContainer>
+                );
+            })}
+          </OperatorCardWrapper>
+        </OperatorSelectionWrapper>
+      </OperatorSelectionContainer>
+    </StyledBackground>
+  );
 }

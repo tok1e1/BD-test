@@ -11,6 +11,12 @@ export const PaymentFormContainer = styled.div`
   height: 100vh;
   font-family: "Rubik", sans-serif;
 `;
+export const StyledLogo = styled.img`
+  margin-right: 8px;
+  padding: 5px, 5px, 0px, 5px;
+  width: 35px;
+  height: 35px;
+`;
 
 export const PaymentFormWrapper = styled.div`
   padding-top: 10px;
