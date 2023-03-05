@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 import { NextRouter, useRouter } from "next/router";
 import { OPERATORS_LIST } from "../constants";
 
@@ -14,15 +13,9 @@ import {
   StyledListLogo,
 } from "./styleIndex";
 
-interface Operator {
-  id: string;
-  name: string;
-  image: string;
-}
 export default function OperatorSelection() {
   const router: NextRouter = useRouter();
-  const [index, setIndex] = useState(3);
-  const lenOperatorsList = Object.keys(OPERATORS_LIST).length;
+  const [index] = useState(3);
 
   return (
     <StyledBackground>

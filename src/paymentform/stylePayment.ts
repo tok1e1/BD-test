@@ -30,10 +30,19 @@ export const PaymentFormWrapper = styled.div`
   background-color: #ffffff;
   color: #030200;
   width: 60vw;
-  height: 37vh;
+  height: 38vh;
   border-radius: 10px;
+  @media (max-width: 1024px) {
+    width: 50vw;
+  }
+
+  @media (max-width: 768px) {
+    width: 70vw;
+  }
+
   @media (max-width: 425px) {
     font-size: 30px;
+    width: 90vw;
   }
 `;
 
@@ -51,14 +60,14 @@ export const InputField = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 `;
 
 export const ErrorMessage = styled.div`
   color: red;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 0px;
 `;
 
 export const SuccessMessage = styled.div`
@@ -67,7 +76,7 @@ export const SuccessMessage = styled.div`
   margin-top: 5px;
 `;
 
-export const PaymentFormButton = styled.button`
+export const PaymentFormButton = styled.button<{ isDisabled: boolean }>`
   background-color: #0070f3;
   color: #fff;
   border: none;

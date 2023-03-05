@@ -9,8 +9,7 @@ export const StyledBackground = styled.section`
 export const StyledListLogo = styled.img`
   margin-right: 8px;
   padding: 5px;
-  width: 32px;
-  filter: brightness(0.7);
+  width: 50px;
 `;
 
 export const OperatorSelectionWrapper = styled.div`
@@ -24,11 +23,21 @@ export const OperatorSelectionWrapper = styled.div`
   margin-top: 500px;
   background-color: #ffffff;
   color: #030200;
-  width: 60vw;
+  width: 30vw;
   height: 30vh;
   border-radius: 10px;
+
+  @media (max-width: 1024px) {
+    width: 50vw;
+  }
+
+  @media (max-width: 768px) {
+    width: 70vw;
+  }
+
   @media (max-width: 425px) {
     font-size: 30px;
+    width: 90vw;
   }
 `;
 
@@ -62,6 +71,9 @@ export const OperatorCardContainer = styled.div`
   height: 6rem;
 
   &:hover {
+    ${StyledListLogo} {
+      filter: none;
+    }
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     transform: translateY(-0.125rem);
   }
