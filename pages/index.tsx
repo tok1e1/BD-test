@@ -1,3 +1,3 @@
-import OpearatorsList from "../src/operatorslist";
+import OperatorsList from "../src/operatorslist";
 
-export default OpearatorsList;
+export default OperatorsList;

@@ -1,8 +1,13 @@
+import { StyledBackground } from "../src/operatorslist/styleIndex";
+import "normalize.css";
 import type { AppProps } from "next/app";
-import React from "react";
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />;
-};
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <StyledBackground>
+      <Component {...pageProps} />
+    </StyledBackground>
+  );
+}
 
 export default MyApp;

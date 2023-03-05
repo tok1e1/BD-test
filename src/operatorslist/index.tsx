@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import {
   OperatorSelectionWrapper,
@@ -16,35 +17,34 @@ interface Operator {
   name: string;
   image: string;
 }
-
-const operators: Operator[] = [
-  {
-    id: "mts",
-    name: "  МТС",
-    image: "/mts.png",
-  },
-  {
-    id: "beeline",
-    name: "Билайн",
-    image: "/beeline.png",
-  },
-  {
-    id: "megafon",
-    name: "Мегафон",
-    image: "/megafon.png",
-  },
-];
-
 export default function OperatorsList() {
+  const operators: Operator[] = [
+    {
+      id: "mts",
+      name: "  МТС",
+      image: "/mts.png",
+    },
+    {
+      id: "beeline",
+      name: "Билайн",
+      image: "/beeline.png",
+    },
+    {
+      id: "megafon",
+      name: "Мегафон",
+      image: "/megafon.png",
+    },
+  ];
+
   const OperatorSelection = () => {
-    const [selectedOperator, setSelectedOperator] = useState<Operator | null>(
-      null
-    );
+    const router = useRouter();
 
     const handleOperatorSelect = (operator: Operator) => {
-      setSelectedOperator(operator);
-      // Redirect to payment form page passing the selected operator ID as a query parameter
-      window.location.href = `/payment-form?operator=${operator.id}`;
+      // Navigate to payment form page passing the selected operator ID as a query parameter
+      router.push({
+        pathname: "/payment-form",
+        query: { operator: operator.id },
+      });
     };
 
     return (
